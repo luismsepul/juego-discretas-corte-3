@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resultados — Albion Express</title>
+    <meta name="description" content="Compara tu ruta con la ruta óptima y analiza métricas." />
+    <link rel="stylesheet" href="../assets/styles/main.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="icon" href="../assets/img/logo.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="breadcrumbs">
+          <a class="link" href="../index.html">Inicio</a>
+          <span class="muted">/</span>
+          <a class="link" href="./game.html">Juego</a>
+          <span class="muted">/</span>
+          <span>Resultados</span>
+        </div>
+
+        <div class="topbar__right">
+          <button class="btn btn--secondary" id="retryBtn" type="button">Reintentar</button>
+          <a class="btn btn--secondary" href="../index.html">Cambiar escenario</a>
+        </div>
+      </header>
+
+      <main class="container grid-results">
+        <section class="card map-card">
+          <div class="map-head">
+            <div>
+              <div class="h">Comparación de rutas</div>
+              <div class="muted" id="scenarioName"></div>
+            </div>
+            <div class="toggle" role="radiogroup" aria-label="Modo de visualización">
+              <label class="toggle__item"><input type="radio" name="view" value="both" checked /> Ambas</label>
+              <label class="toggle__item"><input type="radio" name="view" value="player" /> Tu ruta</label>
+              <label class="toggle__item"><input type="radio" name="view" value="optimal" /> Óptima</label>
+            </div>
+          </div>
+
+          <div class="map-wrap">
+            <div id="map" class="map map--leaflet" role="img" aria-label="Mapa del Reino Unido con comparación de rutas"></div>
+          </div>
+
+          <div class="legend legend--bottom">
+            <span class="legend__item"><span class="dot dot--player"></span> Tu ruta</span>
+            <span class="legend__item"><span class="dot dot--optimal"></span> Óptima</span>
+          </div>
+        </section>
+
+        <aside class="card sidebar">
+          <div class="h">Resultado</div>
+          <div class="score" id="score"></div>
+
+          <div class="divider"></div>
+
+          <div class="compare">
+            <div class="compare__card">
+              <div class="compare__title">Tu ruta</div>
+              <div class="compare__value" id="playerDistance"></div>
+              <div class="help" id="playerRoute"></div>
+            </div>
+            <div class="compare__card">
+              <div class="compare__title">Ruta óptima</div>
+              <div class="compare__value" id="optimalDistance"></div>
+              <div class="help" id="optimalRoute"></div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric__label">Diferencia</div>
+              <div class="metric__value" id="delta"></div>
+            </div>
+            <div class="metric">
+              <div class="metric__label">% sobre óptimo</div>
+              <div class="metric__value" id="pct"></div>
+            </div>
+            <div class="metric">
+              <div class="metric__label">Tiempo (tu ruta)</div>
+              <div class="metric__value" id="playerTime"></div>
+            </div>
+            <div class="metric">
+              <div class="metric__label">Combustible (tu ruta)</div>
+              <div class="metric__value" id="playerFuel"></div>
+            </div>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="../src/pages/results.js"></script>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Albion Express — Agente Viajero</title>
+    <meta name="description" content="Juego educativo para construir rutas y compararlas con la ruta óptima del TSP." />
+    <meta property="og:title" content="Albion Express — Agente Viajero" />
+    <meta property="og:description" content="Juego educativo para construir rutas y compararlas con la ruta óptima del TSP." />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="./assets/styles/main.css" />
+    <link rel="icon" href="./assets/img/logo.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <img class="brand__logo" src="./assets/img/logo.svg" alt="Albion Express" />
+          <div>
+            <div class="brand__title">Albion Express</div>
+            <div class="brand__subtitle">Juego educativo — Agente Viajero (TSP)</div>
+          </div>
+        </div>
+        <button id="howToBtn" class="btn btn--secondary" type="button">Cómo se juega</button>
+      </header>
+
+      <main class="container grid-2">
+        <section class="card">
+          <h1>Optimiza rutas de entrega en el Reino Unido</h1>
+          <p class="muted">
+            Eres el coordinador logístico de Albion Express. Tu objetivo es visitar varias ciudades (nodos) y volver a Londres
+            recorriendo la menor distancia posible.
+          </p>
+          <div class="divider"></div>
+          <h2 class="h">Qué aprenderás</h2>
+          <ul class="list">
+            <li>Qué significa construir un ciclo que visita todos los nodos.</li>
+            <li>Cómo cambian distancia, tiempo y combustible según el orden de visita.</li>
+            <li>Cómo se compara tu ruta con una ruta óptima (TSP).</li>
+          </ul>
+
+          <dialog id="howTo" class="dialog">
+            <form method="dialog" class="dialog__panel">
+              <div class="dialog__header">
+                <div>
+                  <div class="dialog__title">Cómo se juega</div>
+                  <div class="dialog__subtitle">Clic en nodos para armar tu ruta</div>
+                </div>
+                <button class="btn btn--secondary" value="close">Cerrar</button>
+              </div>
+              <div class="dialog__body">
+                <ol class="list">
+                  <li>Empiezas en Londres.</li>
+                  <li>Haz clic en las ciudades objetivo para agregarlas a tu ruta.</li>
+                  <li>Cuando hayas visitado todas, vuelve a hacer clic en Londres para cerrar la ruta.</li>
+                  <li>Al final verás tus métricas y la comparación con la ruta óptima.</li>
+                </ol>
+              </div>
+            </form>
+          </dialog>
+        </section>
+
+        <section class="card">
+          <h2>Configurar escenario</h2>
+          <p class="muted">La distancia se calcula con coordenadas del mapa y se convierte a kilómetros.</p>
+
+          <div class="field">
+            <label for="scenario">Escenario</label>
+            <select id="scenario" class="select"></select>
+            <div id="scenarioInfo" class="help"></div>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn--primary" id="startBtn" href="./pages/game.html">Iniciar distribución</a>
+          </div>
+
+          <div class="mini">
+            <div class="mini__label">Pistas</div>
+            <div class="mini__text">Usa “Deshacer” si te equivocas. Busca ahorrar kilómetros para mejorar tu puntuación.</div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span class="muted">Albion Express — simulación educativa inspirada en logística y TSP.</span>
+      </footer>
+    </div>
+
+    <script type="module" src="./src/pages/home.js"></script>
+  </body>
+</html>
+

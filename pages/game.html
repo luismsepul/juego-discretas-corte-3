@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jugar — Albion Express</title>
+    <meta name="description" content="Construye tu ruta haciendo clic en los nodos del mapa." />
+    <link rel="stylesheet" href="../assets/styles/main.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="icon" href="../assets/img/logo.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="breadcrumbs">
+          <a class="link" href="../index.html">Inicio</a>
+          <span class="muted">/</span>
+          <span>Juego</span>
+        </div>
+
+        <div class="topbar__right">
+          <div class="pill" id="scenarioName"></div>
+          <button class="btn btn--secondary" id="undoBtn" type="button">Deshacer</button>
+          <button class="btn btn--secondary" id="resetBtn" type="button">Reiniciar ruta</button>
+        </div>
+      </header>
+
+      <main class="container grid-game">
+        <section class="card map-card">
+          <div class="map-head">
+            <div>
+              <div class="h">Mapa de distribución</div>
+              <div class="muted" id="hint"></div>
+            </div>
+            <div class="legend">
+              <span class="legend__item"><span class="dot dot--player"></span> Tu ruta</span>
+              <span class="legend__item"><span class="dot dot--goal"></span> Objetivo</span>
+              <span class="legend__item"><span class="dot dot--start"></span> Londres</span>
+            </div>
+          </div>
+
+          <div class="map-wrap">
+            <div id="map" class="map map--leaflet" role="img" aria-label="Mapa del Reino Unido con ciudades como nodos"></div>
+          </div>
+        </section>
+
+        <aside class="card sidebar">
+          <div class="h">Métricas</div>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric__label">Visitadas</div>
+              <div class="metric__value" id="visited"></div>
+            </div>
+            <div class="metric">
+              <div class="metric__label">Distancia</div>
+              <div class="metric__value" id="distance"></div>
+            </div>
+            <div class="metric">
+              <div class="metric__label">Tiempo estimado</div>
+              <div class="metric__value" id="time"></div>
+            </div>
+            <div class="metric">
+              <div class="metric__label">Combustible</div>
+              <div class="metric__value" id="fuel"></div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="h">Tu ruta</div>
+          <div class="chips" id="routeChips"></div>
+          <div class="help" id="status"></div>
+
+          <div class="divider"></div>
+
+          <div class="h">Ciudades objetivo</div>
+          <div class="targets" id="targets"></div>
+
+          <div class="actions">
+            <a class="btn btn--primary btn--block" id="resultsBtn" href="./results.html" aria-disabled="true">Ver resultados</a>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="../src/pages/game.js"></script>
+  </body>
+</html>
