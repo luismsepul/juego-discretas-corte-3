@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises'
 import { extname, join, normalize } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
-const __dirname = normalize(join(fileURLToPath(import.meta.url), '..'))
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const rootDir = __dirname
 
 const mimeByExt = {
