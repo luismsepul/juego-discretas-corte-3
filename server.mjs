@@ -1,7 +1,7 @@
 import http from 'node:http'
 import { readFile } from 'node:fs/promises'
 import { extname, join, normalize } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const __dirname = normalize(join(fileURLToPath(import.meta.url), '..'))
 const rootDir = __dirname
@@ -29,7 +29,7 @@ function toFilePath(urlPath) {
   return p
 }
 
-const server = http.createServer(async (req, res) => {
+async function handle(req, res) {
   try {
     const urlPath = req.url || '/'
     const filePath = join(rootDir, toFilePath(urlPath))
@@ -51,10 +51,19 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' })
     res.end('500 Server Error')
   }
-})
+}
 
-const port = Number(process.env.PORT || 5173)
-server.listen(port, '127.0.0.1', () => {
-  process.stdout.write(`Servidor listo: http://127.0.0.1:${port}/\n`)
-})
+export default async function handler(req, res) {
+  return handle(req, res)
+}
 
+const isEntrypoint = import.meta.url === pathToFileURL(process.argv[1] || '').href
+if (isEntrypoint) {
+  const server = http.createServer((req, res) => {
+    void handle(req, res)
+  })
+  const PORT = process.env.PORT || 3000
+  server.listen(Number(PORT), '0.0.0.0', () => {
+    process.stdout.write(`Servidor listo: http://localhost:${PORT}/\n`)
+  })
+}
